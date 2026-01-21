@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import  settings # To link Product to a Vendor
 
 # Create your models here.
+# store_category
 class Category(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255) # For SEO friendly URLs (e.g., /store/shoes/)
@@ -11,7 +12,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
-
+# store_product
 class Product(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='products', on_delete=models.CASCADE)
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
