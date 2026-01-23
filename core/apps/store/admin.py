@@ -7,7 +7,9 @@ class CategoryAdmin(admin.ModelAdmin):
     # This automatically fills the slug (user friendly text) based title
     prepopulated_fileds = {'slug':('title',)}
 
+@admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title','vendor','price','date_added')
-    list_filter  = ('category','date_added')
-    prepopulated_fields = {'slug',('title',)}
+    list_display = ['title', 'user', 'price', 'date_added']
+    list_filter = ['category', 'date_added']
+    search_fields = ['title', 'description']
+    prepopulated_fields = {'slug': ('title',)}
