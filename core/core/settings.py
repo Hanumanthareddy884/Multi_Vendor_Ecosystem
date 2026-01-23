@@ -115,10 +115,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
 #  Set the Auth Model
 AUTH_USER_MODEL = 'accounts.User'
+# URL to access media files via browser
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = sys.os.path.join(BASE_DIR, 'media')
