@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ product.title }}</h1>
+<p>Price: ${{ product.price }}</p>
+<p>{{ product.description }}</p>
+
+{% if product.image %}
+    <img src="{{ product.image.url }}" style="max-width: 300px;">
+{% endif %}
+
+<form method="post" action=".">
+    {% csrf_token %}
+    <button type="submit">Add to Cart</button>
+</form>
+
+
+<a href="{% url 'frontpage' %}"> < Back to Home</a>
+<hr>
+
+<div style="display: flex; gap: 40px; margin-top: 20px;">
+    <div>
+        {% if product.image %}
+            <img src="{{ product.image.url }}" width="400">
+        {% endif %}
+    </div>
+
+    <div>
+        <h1>{{ product.title }}</h1>
+        <p><strong>Vendor:</strong> {{ product.vendor.username }}</p>
+        <p><strong>Category:</strong> {{ product.category.title }}</p>
+        <p><strong>Price:</strong> ${{ product.price }}</p>
+
+        <div style="margin: 20px 0;">
+            <h3>Description</h3>
+            {{ product.description|linebreaks }}
+        </div>
+
+        <button style="padding: 10px 20px; background: green; color: white; border: none; cursor: pointer;">
+            Add to Cart
+        </button>
+    </div>
+</div>
+</body>
+</html>

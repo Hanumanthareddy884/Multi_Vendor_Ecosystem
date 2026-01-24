@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from store.views import frontend
+from store.views import frontend,category_detail,product_detail
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', frontend, name='frontend')
+    path('', frontend, name='frontend'),
+    path('<slug:slug>/',category_detail, name= 'category_detail'),
+    path('<slug:category_slug>/<slug:slug>/', product_detail,name='product_detail')
 ]
 
 
