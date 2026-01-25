@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "home.html" %}
+{% block content %}
 <a href="{% url 'frontend' %}"> < Back to Home</a>
 <hr>
 
@@ -27,5 +22,4 @@
         <p>No products found in this category yet.</p>
     {% endfor %}
 </div>
-</body>
-</html>
+{% endblock %}

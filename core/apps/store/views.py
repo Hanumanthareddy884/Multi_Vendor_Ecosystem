@@ -7,10 +7,10 @@ from .models import Product, Category
 def frontend(request):
     # Fetch the 8 most recent products
     products = Product.objects.all()[0:8]
-    category = Category.objects.all()
+    categorys = Category.objects.all()
     return render(request, 'store/frontend.html', {
         'products': products,
-        'category': category
+        'categorys': categorys
     })
 
 
@@ -25,8 +25,7 @@ def category_detail(request, slug=None):
     # get_object_or_404(model,id=1 or title = "sfsdf" or slug) here we are using slug for SEO
     category = get_object_or_404(Category, slug=slug)
     products = category.products.all()
-    print(category, products)
-    return render(request, 'store/category_detail.html', {
+    return render(request, 'store/category_details.html', {
         'category': category,
         'products': products
     })

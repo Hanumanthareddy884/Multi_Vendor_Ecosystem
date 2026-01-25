@@ -1,40 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Multivendor Ecosystem</title>
-</head>
-<body>
-<h1>Welcome to Multivendor Ecosystem</h1>
-<hr>
-<h2>Latest Products</h2>
-<nav>
-    <strong>Categories:</strong>
-    {% for category in categories %}
-    <a href="{% url 'category_detail' category.slug %}" style="margin-right: 15px;">
-        {{ category.title }}
-    </a>
-    {% endfor %}{% if product.category and product.slug %}
-    <a href="{% url 'product_detail' product.category.slug product.slug %}">
-        {{ product.title }}
-    </a>
-    {% else %}
-    <span>{{ product.title }} (Link unavailable)</span>
-    {% endif %}
-</nav>
-<hr>
-<div style="display:flex;gap:20px">
-    {% for product in products %}
-    <div style="border: 1px solid #ccc; padding:10px;">
-        {% if product.image %}
-        <img src="{{product.image.url}}" width="150">
+{% extends "home.html" %}
+{% block content %}
+   <h1>Welcome to Multivendor Ecosystem</h1>
+    <hr>
+    <h2>Latest Products</h2>
+    <nav>
+        <strong>Categories:</strong>
+        {% for category in categorys %}
+        <a href="{% url 'category_detail' category.slug %}" style="margin-right: 15px;">
+            {{ category.title }}
+        </a>
+        {% endfor %}
+        {% if product.category and product.slug %}
+        <a href="{% url 'product_detail' product.category.slug product.slug %}">
+            {{ product.title }}
+        </a>
+        {% else %}
+        <span>{{ product.title }} (Link unavailable)</span>
         {% endif %}
-        <h3>{{ product.title }}</h3>
-        <p>${{ product.price }}</p>
-        <button>Add to Cart</button>
-    </div>
+    </nav>
+    <hr>
+    <div style="display:flex;gap:20px">
+        {% for product in products %}
+        <div style="border: 1px solid #ccc; padding:10px;">
+            {% if product.image %}
+            <img src="{{product.image.url}}" width="150">
+            {% endif %}
+            <h3>{{ product.title }}</h3>
+            <p>${{ product.price }}</p>
+            <button>Add to Cart</button>
+        </div>
 
-    {% endfor %}
-</div>
-</body>
-</html>
+        {% endfor %}
+    </div>
+{% endblock %}
+
