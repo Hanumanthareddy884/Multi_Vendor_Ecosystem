@@ -44,3 +44,10 @@ class Cart(object):
 
     def get_total_cost(self):
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+
+    def remove(self, product_id):
+        product_id = str(product_id)
+
+        if product_id in self.cart:
+            del self.cart[product_id]
+            self.save()

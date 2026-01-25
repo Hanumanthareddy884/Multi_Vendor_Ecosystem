@@ -19,18 +19,5 @@
         {% endif %}
     </nav>
     <hr>
-    <div style="display:flex;gap:20px">
-        {% for product in products %}
-        <div style="border: 1px solid #ccc; padding:10px;">
-            {% if product.image %}
-            <img src="{{product.image.url}}" width="150">
-            {% endif %}
-            <h3>{{ product.title }}</h3>
-            <p>${{ product.price }}</p>
-            <button>Add to Cart</button>
-        </div>
-
-        {% endfor %}
-    </div>
 {% endblock %}
 

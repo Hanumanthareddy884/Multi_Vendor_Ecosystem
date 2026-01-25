@@ -5,45 +5,50 @@
 <hr>
 
 {% if cart %}
-    <table style="width: 100%; border-collapse: collapse;">
-        <thead>
-            <tr style="text-align: left; border-bottom: 2px solid #eee;">
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in cart %}
-                {% with product=item.product %}
-                    <tr style="border-bottom: 1px solid #eee;">
-                        <td>
-                            <a href="{% url 'product_detail' product.category.slug product.slug %}">
-                                {{ product.title }}
-                            </a>
-                        </td>
-                        <td>{{ item.quantity }}</td>
-                        <td>${{ item.price }}</td>
-                        <td>${{ item.total_price }}</td>
-                    </tr>
-                {% endwith %}
-            {% endfor %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3" style="text-align: right; padding-top: 20px;"><strong>Total:</strong></td>
-                <td style="padding-top: 20px;"><strong>${{ cart.get_total_cost }}</strong></td>
-            </tr>
-        </tfoot>
-    </table>
+<table style="width: 100%; border-collapse: collapse;">
+    <thead>
+    <tr style="text-align: left; border-bottom: 2px solid #eee;">
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in cart %}
+    {% with product=item.product %}
+    <tr style="border-bottom: 1px solid #eee;">
+        <td>
+            <a href="{% url 'product_detail' product.category.slug product.slug %}">
+                {{ product.title }}
+            </a>
+        </td>
+        <td>{{ item.quantity }}</td>
+        <td>${{ item.price }}</td>
+        <td>${{ item.total_price }}</td>
+        <td>
+            <a href="{% url 'remove_from_cart' product.id %}" style="color: red; text-decoration: none;">
+                Remove
+            </a>
+        </td>
+    </tr>
+    {% endwith %}
+    {% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="3" style="text-align: right; padding-top: 20px;"><strong>Total:</strong></td>
+        <td style="padding-top: 20px;"><strong>${{ cart.get_total_cost }}</strong></td>
+    </tr>
+    </tfoot>
+</table>
 
-    <div style="margin-top: 20px;">
-        <a href="{% url 'frontpage' %}" style="background: #ccc; padding: 10px; text-decoration: none;">Continue Shopping</a>
-        <a href="#" style="background: green; color: white; padding: 10px; text-decoration: none;">Proceed to Checkout</a>
-    </div>
+<div style="margin-top: 20px;">
+    <a href="{% url 'frontend' %}" style="background: #ccc; padding: 10px; text-decoration: none;">Continue Shopping</a>
+    <a href="#" style="background: green; color: white; padding: 10px; text-decoration: none;">Proceed to Checkout</a>
+</div>
 {% else %}
-    <p>Your cart is empty.</p>
-    <a href="{% url 'frontpage' %}">Go shop for something!</a>
+<p>Your cart is empty.</p>
+<a href="{% url 'frontend' %}">Go shop for something!</a>
 {% endif %}
 {% endblock %}

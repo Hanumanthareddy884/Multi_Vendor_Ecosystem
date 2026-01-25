@@ -19,16 +19,17 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from store.views import frontend,category_detail,product_detail
-from cart.views import add_to_cart,cart_detail
+from cart.views import add_to_cart,cart_detail,remove_from_cart
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', frontend, name='frontend'),
-    path('<slug:slug>/',category_detail, name= 'category_detail'),
     path('<slug:category_slug>/<slug:slug>/', product_detail,name='product_detail'),
     path('cart/', cart_detail, name='cart_detail'),
-    path('cart/add/<int:product_id>/',add_to_cart,name='add_to_cart')
+    path('cart/add/<int:product_id>/',add_to_cart,name='add_to_cart'),
+    path('<slug:slug>/',category_detail, name= 'category_detail'),
+    path('cart/remove/<int:product_id>/', remove_from_cart, name='remove_from_cart'),
 ]
 
 

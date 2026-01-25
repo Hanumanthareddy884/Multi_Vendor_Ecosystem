@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Multivendor Ecosystem</title>
+    <title>NexaMart</title>
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+<nav style="padding: 10px; border-bottom: 1px solid #ccc;">
+    <a href="{% url 'frontend' %}"><strong>Multivender</strong></a> |
+    <a href="{% url 'cart_detail' %}">Cart ({% if cart %}{{ cart|length }}{% endif %})</a>
+</nav>
+
+<main style="padding: 20px;">
+    {% block content %}{% endblock %}
+</main>
 </body>
 </html>
