@@ -32,6 +32,7 @@ urlpatterns = [
     path('signup/', signup, name='signup'),
     path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
 
+
     path('cart/add/<int:product_id>/', add_to_cart, name='add_to_cart'),
     path('<slug:slug>/', category_detail, name='category_detail'),
     path('cart/remove/<int:product_id>/', remove_from_cart, name='remove_from_cart'),
