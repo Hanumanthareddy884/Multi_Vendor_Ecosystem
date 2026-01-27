@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>NexaMart</title>
+    <title>Multi-vendor-Ecosystem</title>
 </head>
 <body>
-<nav style="padding: 10px; border-bottom: 1px solid #ccc;">
-    <a href="{% url 'frontend' %}"><strong>Multivender</strong></a> |
+<nav>
+     <a href="{% url 'frontend' %}"><strong>Multi-vendor</strong></a> |
     <a href="{% url 'cart_detail' %}">Cart ({% if cart %}{{ cart|length }}{% endif %})</a>
+    {% if request.user.is_authenticated %}
+        <span>Hello, {{ request.user.username }}</span> |
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" style="background:none; border:none; color:blue; cursor:pointer; text-decoration:underline; padding:0;">Logout</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a> |
+        <a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
 </nav>
-
 <main style="padding: 20px;">
     {% block content %}{% endblock %}
 </main>
