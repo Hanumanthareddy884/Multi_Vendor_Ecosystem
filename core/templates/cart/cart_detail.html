@@ -45,7 +45,7 @@
 
 <div style="margin-top: 20px;">
     <a href="{% url 'frontend' %}" style="background: #ccc; padding: 10px; text-decoration: none;">Continue Shopping</a>
-    <a href="#" style="background: green; color: white; padding: 10px; text-decoration: none;">Proceed to Checkout</a>
+    <a href="{% url 'checkout' %}" style="background: green; color: white; padding: 10px; text-decoration: none;">Proceed to Checkout</a>
 </div>
 {% else %}
 <p>Your cart is empty.</p>
