@@ -131,3 +131,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CART_SESSION_ID = 'cart'
 LOGIN_REDIRECT_URL = 'frontend'
 LOGOUT_REDIRECT_URL = 'frontend'
+
+STRIPE_PUB_KEY = 'pk_test_your_public_key'
+STRIPE_SECRET_KEY = 'sk_test_your_secret_key'
