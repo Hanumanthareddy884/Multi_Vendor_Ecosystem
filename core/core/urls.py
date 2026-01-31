@@ -22,7 +22,7 @@ from store.views import frontend, category_detail, product_detail
 from cart.views import add_to_cart, cart_detail, remove_from_cart
 from django.contrib.auth import views as auth_views  # Import Django's auth views
 from accounts.views import signup
-from order.views import checkout
+from order.views import checkout,success_view,create_checkout_session
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,7 +32,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('signup/', signup, name='signup'),
     path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
-
+    path('api/create-checkout-session/', create_checkout_session, name='create_checkout_session'),
+    path('cart/success/', success_view, name='success'),
 
     path('cart/add/<int:product_id>/', add_to_cart, name='add_to_cart'),
     path('<slug:slug>/', category_detail, name='category_detail'),
