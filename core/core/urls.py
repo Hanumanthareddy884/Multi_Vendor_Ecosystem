@@ -33,7 +33,7 @@ urlpatterns = [
     path('signup/', signup, name='signup'),
     path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('api/create-checkout-session/', create_checkout_session, name='create_checkout_session'),
-    path('cart/success/', success_view, name='success'),
+    path('order/success/', success_view, name='success'),
 
     path('cart/add/<int:product_id>/', add_to_cart, name='add_to_cart'),
     path('<slug:slug>/', category_detail, name='category_detail'),
