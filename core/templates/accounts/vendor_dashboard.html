@@ -1,0 +1,28 @@
+{% extends 'home.html' %}
+
+{% block content %}
+    <h1>Vendor Dashboard: {{ request.user.username }}</h1>
+    <hr>
+
+    <div style="display: flex; gap: 20px;">
+        <div style="flex: 1; border: 1px solid #ddd; padding: 20px;">
+            <h2>My Products</h2>
+            <a href="{% url 'add_product' %}" style="background: blue; color: white; padding: 5px 10px; text-decoration: none;">+ Add Product</a>
+            
+            <table style="width: 100%; margin-top: 20px;">
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.title }}</td>
+                    <td>${{ product.price }}</td>
+                    <td><a href="#">Edit</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div style="flex: 1; border: 1px solid #ddd; padding: 20px;">
+            <h2>Recent Sales</h2>
+            <p>Order history will appear here soon.</p>
+        </div>
+    </div>
+{% endblock %}

@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from store.views import frontend, category_detail, product_detail
 from cart.views import add_to_cart, cart_detail, remove_from_cart
 from django.contrib.auth import views as auth_views  # Import Django's auth views
-from accounts.views import signup
+from accounts.views import signup,vendor_dashboard
 from order.views import checkout,success_view,create_checkout_session
 
 urlpatterns = [
@@ -34,7 +34,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('api/create-checkout-session/', create_checkout_session, name='create_checkout_session'),
     path('order/success/', success_view, name='success'),
-
+path('vendor-dashboard/', vendor_dashboard, name='vendor_dashboard'),
     path('cart/add/<int:product_id>/', add_to_cart, name='add_to_cart'),
     path('<slug:slug>/', category_detail, name='category_detail'),
     path('cart/remove/<int:product_id>/', remove_from_cart, name='remove_from_cart'),

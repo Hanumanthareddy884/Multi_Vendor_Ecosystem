@@ -13,6 +13,10 @@
             {% csrf_token %}
             <button type="submit" style="background:none; border:none; color:blue; cursor:pointer; text-decoration:underline; padding:0;">Logout</button>
         </form>
+        {% if request.user.is_vendor %}
+            <a href="{% url 'vendor_dashboard' %}">Dashboard</a>
+        {% endif %}
+            <span>Hello {{ request.user.username }}</span>
     {% else %}
         <a href="{% url 'login' %}">Login</a> |
         <a href="{% url 'signup' %}">Sign Up</a>
