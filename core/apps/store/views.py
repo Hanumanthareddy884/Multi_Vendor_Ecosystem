@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404,redirect
 from .models import Product, Category
-
-
+from .forms import  ProductForm
+from django.utils.text import slugify
 # Create your views here.
 
 def frontend(request):
@@ -35,3 +36,20 @@ def remove(self, product_id):
     if product_id in self.cart:
         del self.cart[product_id]
         self.save()
+
+@login_required
+def add_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.vendor = request.user
+            product.slug = slugify(product.title)
+            product.save()
+
+            return redirect('vendor_dashboard')
+    else:
+        form = ProductForm()
+
+    return render(request, 'store/add_product.html', {'form': form})

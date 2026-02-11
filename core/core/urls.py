@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from store.views import frontend, category_detail, product_detail
+from store.views import frontend, category_detail, product_detail, add_product
 from cart.views import add_to_cart, cart_detail, remove_from_cart
 from django.contrib.auth import views as auth_views  # Import Django's auth views
 from accounts.views import signup,vendor_dashboard
@@ -34,11 +34,13 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('api/create-checkout-session/', create_checkout_session, name='create_checkout_session'),
     path('order/success/', success_view, name='success'),
+    path('vendor/add-product/', add_product, name='add_product'),
 path('vendor-dashboard/', vendor_dashboard, name='vendor_dashboard'),
     path('cart/add/<int:product_id>/', add_to_cart, name='add_to_cart'),
     path('<slug:slug>/', category_detail, name='category_detail'),
     path('cart/remove/<int:product_id>/', remove_from_cart, name='remove_from_cart'),
     path('cart/checkout/', checkout, name='checkout'),
+
 ]
 
 if settings.DEBUG:
